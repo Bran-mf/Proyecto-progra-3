@@ -6,6 +6,7 @@
 package WsClinicaUNA.Dto;
 
 import WsClinicaUNA.model.CuExamen;
+import java.math.BigDecimal;
 
 import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,9 +24,28 @@ public class CuExamenDto {
     private String exaNombre;
     private String exaAnotacones;
     private String exaAdjunto;
+    private Long version;
+    private CuExpedienteDto cuExpedienteDto;
     //metodos
     //get and set
 
+    public Long getVersion() {
+        return version;
+    }
+
+    public CuExpedienteDto getCuExpedienteDto() {
+        return cuExpedienteDto;
+    }
+
+    public void setCuExpedienteDto(CuExpedienteDto cuExpedienteDto) {
+        this.cuExpedienteDto = cuExpedienteDto;
+    }
+    
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    
     public Long getExaId() {
         return exaId;
     }
@@ -81,4 +101,6 @@ public class CuExamenDto {
         this.exaAnotacones = exa.getExaAnotacones();
         this.exaAdjunto = exa.getExaAdjunto();
     }
+
+    
 }

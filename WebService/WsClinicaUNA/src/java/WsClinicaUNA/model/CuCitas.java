@@ -5,6 +5,7 @@
  */
 package WsClinicaUNA.model;
 
+import WsClinicaUNA.Dto.CuCitasDto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -23,6 +24,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -44,6 +46,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "CuCitas.findByCitEspacios", query = "SELECT c FROM CuCitas c WHERE c.citEspacios = :citEspacios")
     , @NamedQuery(name = "CuCitas.findByCitId", query = "SELECT c FROM CuCitas c WHERE c.citId = :citId")})
 public class CuCitas implements Serializable {
+
+    
 
     private static final long serialVersionUID = 1L;
     
@@ -75,17 +79,18 @@ public class CuCitas implements Serializable {
     @Basic(optional = false)
     @Column(name = "CIT_ESPACIOS")
     private String citEspacios;
-    @JoinColumn(name = "MED_FOLIO", referencedColumnName = "MED_FOLIO")
-    @ManyToOne(optional = false)
-    private CuMedicos medFolio;
-    @JoinColumn(name = "PAC_CEDULA", referencedColumnName = "PAC_CEDULA")
-    @ManyToOne(optional = false)
-    private CuPacientes pacCedula;
-    @JoinColumn(name = "USU_CEDULA", referencedColumnName = "USU_CEDULA")
-    @ManyToOne(optional = false)
-    private CuUsuarios usuCedula;
+    @Version
     @Column(name = "CIT_VERSION")
     private Long citVersion;
+    @JoinColumn(name = "MED", referencedColumnName = "MED_ID")
+    @ManyToOne(optional = false)
+    private CuMedicos med;
+    @JoinColumn(name = "PAC_ID", referencedColumnName = "PAC_ID")
+    @ManyToOne(optional = false)
+    private CuPacientes pacId;
+    @JoinColumn(name = "USU_ID", referencedColumnName = "USU_ID")
+    @ManyToOne(optional = false)
+    private CuUsuarios usuId;
 
     public CuCitas() {
     }
@@ -94,7 +99,7 @@ public class CuCitas implements Serializable {
         this.citId = citId;
     }
 
-    public CuCitas(Long citId, String citEstado, String citMotivo, String citTelefono, String citCorreo, Date citFecha, String citHora, String citEspacios, CuMedicos medFolio, CuPacientes pacCedula, CuUsuarios usuCedula, Long citVersion) {
+    public CuCitas(Long citId, String citEstado, String citMotivo, String citTelefono, String citCorreo, Date citFecha, String citHora, String citEspacios, Long citVersion, CuMedicos med, CuPacientes pacId, CuUsuarios usuId) {
         this.citId = citId;
         this.citEstado = citEstado;
         this.citMotivo = citMotivo;
@@ -103,10 +108,27 @@ public class CuCitas implements Serializable {
         this.citFecha = citFecha;
         this.citHora = citHora;
         this.citEspacios = citEspacios;
-        this.medFolio = medFolio;
-        this.pacCedula = pacCedula;
-        this.usuCedula = usuCedula;
         this.citVersion = citVersion;
+        this.med = med;
+        this.pacId = pacId;
+        this.usuId = usuId;
+    }
+
+    
+    
+    public CuCitas(CuCitasDto cucitasDto){
+        this.citId=cucitasDto.getCitId();
+        this.citEstado= cucitasDto.getCitEstado();
+        this.citMotivo=cucitasDto.getCitMotivo();
+        this.citTelefono = cucitasDto.getCitTelefono();
+        this.citCorreo= cucitasDto.getCitCorreo();
+        this.citFecha =cucitasDto.getCitFecha();
+        this.citHora =cucitasDto.getCitHora();
+        this.citEspacios=cucitasDto.getCitEspacios();
+        this.med=new CuMedicos(cucitasDto.getMed());// por terminar
+        this.pacId= new CuPacientes(cucitasDto.getPacId());
+        this.usuId= new CuUsuarios(cucitasDto.getUsuId());
+        this.citVersion=cucitasDto.getCitVersion();
     }
 
     
@@ -183,30 +205,6 @@ public class CuCitas implements Serializable {
         this.citId = citId;
     }
 
-    public CuMedicos getMedFolio() {
-        return medFolio;
-    }
-
-    public void setMedFolio(CuMedicos medFolio) {
-        this.medFolio = medFolio;
-    }
-
-    public CuPacientes getPacCedula() {
-        return pacCedula;
-    }
-
-    public void setPacCedula(CuPacientes pacCedula) {
-        this.pacCedula = pacCedula;
-    }
-
-    public CuUsuarios getUsuCedula() {
-        return usuCedula;
-    }
-
-    public void setUsuCedula(CuUsuarios usuCedula) {
-        this.usuCedula = usuCedula;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -230,6 +228,30 @@ public class CuCitas implements Serializable {
     @Override
     public String toString() {
         return "WsClinicaUNA.model.CuCitas[ citId=" + citId + " ]";
+    }
+
+    public CuMedicos getMed() {
+        return med;
+    }
+
+    public void setMed(CuMedicos med) {
+        this.med = med;
+    }
+
+    public CuPacientes getPacId() {
+        return pacId;
+    }
+
+    public void setPacId(CuPacientes pacId) {
+        this.pacId = pacId;
+    }
+
+    public CuUsuarios getUsuId() {
+        return usuId;
+    }
+
+    public void setUsuId(CuUsuarios usuId) {
+        this.usuId = usuId;
     }
     
 }

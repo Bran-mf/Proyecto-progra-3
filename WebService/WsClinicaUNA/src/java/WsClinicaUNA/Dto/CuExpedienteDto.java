@@ -90,7 +90,7 @@ public class CuExpedienteDto {
 
     public CuExpedienteDto(CuExpediente cuExpediente) {
         cuReporteCitaList = ModeloToDtoReporteCitas(cuExpediente.getCuReportecitaList());
-        cuPaciente = cuExpediente.getPacCedula();
+        cuPaciente = cuExpediente.getPacId();
         cuExamensList = ModeloToDtoExamenes( cuExpediente.getCuExamenList());
         cuAntecedentesesList = ModeloToDtoAntecedentes(cuExpediente.getCuAntecedentesList());
     }

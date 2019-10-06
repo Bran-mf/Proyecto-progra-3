@@ -6,7 +6,9 @@
 package WsClinicaUNA.model;
 
 import WsClinicaUNA.Dto.CuPacienteDto;
+import WsClinicaUNA.util.Convertidor;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
@@ -14,10 +16,13 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -43,9 +48,18 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "CuPacientes.findByPacVersion", query = "SELECT c FROM CuPacientes c WHERE c.pacVersion = :pacVersion")})
 public class CuPacientes implements Serializable {
 
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    
+    Convertidor conv = new Convertidor();
     private static final long serialVersionUID = 1L;
     
     @Id
+    @SequenceGenerator(name = "PAC_ID_GENERATOR", sequenceName = "PACIENTESEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PAC_ID_GENERATOR")
+    @Basic(optional = false)
+    @Column(name = "PAC_ID")
+    private Long pacId;
     @Basic(optional = false)
     @Column(name = "PAC_CEDULA")
     private String pacCedula;
@@ -66,6 +80,7 @@ public class CuPacientes implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date pacNacimiento;
     @Version
+    @Column(name = "PAC_VERSION")
     private Long pacVersion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacCedula")
     private List<CuExpediente> cuExpedienteList;
@@ -75,18 +90,18 @@ public class CuPacientes implements Serializable {
     public CuPacientes() {
     }
 
-    public CuPacientes(String pacCedula) {
-        this.pacCedula = pacCedula;
-    }
-
-    public CuPacientes(String pacCedula, String pacNombre, String pacApellido, String pacCorreo, String pacGenero, Date pacNacimiento) {
+    public CuPacientes(Long pacId, String pacCedula, String pacNombre, String pacApellido, String pacCorreo, String pacGenero, Date pacNacimiento, Long pacVersion) {
+        this.pacId = pacId;
         this.pacCedula = pacCedula;
         this.pacNombre = pacNombre;
         this.pacApellido = pacApellido;
         this.pacCorreo = pacCorreo;
         this.pacGenero = pacGenero;
         this.pacNacimiento = pacNacimiento;
+        this.pacVersion = pacVersion;
     }
+
+    
 
     public CuPacientes(CuPacienteDto cuPacienteDto) {
         this.pacNombre =cuPacienteDto.getPacNombre();
@@ -94,8 +109,15 @@ public class CuPacientes implements Serializable {
         this.pacApellido=cuPacienteDto.getPacApellido();
         this.pacGenero=cuPacienteDto.getPacGenero();
         this.pacVersion =cuPacienteDto.getVersion();
-        //this.
+        this.pacCorreo=cuPacienteDto.getPacCorreo();
+        this.pacNacimiento =cuPacienteDto.getPacNacimiento(); //revisar
+        this.cuCitasList=conv.dtoToCitas(cuPacienteDto.getListaCitas());
+        this.cuExpedienteList =conv.dtoToExpediente(cuPacienteDto.getListaExpedientes());
         
+    }
+
+    CuPacientes(CuPacientes cuPaciente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getPacNombre() {
@@ -196,5 +218,20 @@ public class CuPacientes implements Serializable {
     public String toString() {
         return "WsClinicaUNA.model.CuPacientes[ pacCedula=" + pacCedula + " ]";
     }
+
+    public CuPacientes(Long pacId) {
+        this.pacId = pacId;
+    }
+
+
+    public Long getPacId() {
+        return pacId;
+    }
+
+    public void setPacId(Long pacId) {
+        this.pacId = pacId;
+    }
+
+    
     
 }

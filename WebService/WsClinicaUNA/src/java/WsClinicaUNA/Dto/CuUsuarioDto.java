@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class CuUsuarioDto {
 
+    private String usuId;
     private String usuCedula;
     private String usuNombre;
     private String usuApellido;
@@ -37,7 +38,8 @@ public class CuUsuarioDto {
     }
     //a este estado le falta temporal, no se si agregar o sieste metodo se llegara a usar
 
-    public CuUsuarioDto(String usuCedula, String usuNombre, String usuApellido, String usuCorreo, String usuTipo, String usuIdioma, String usuEstado, String usuUsuario, String usuContrasena, String usuTemp, String usuCodact, Long usuVersion) {
+    public CuUsuarioDto(String usuId, String usuCedula, String usuNombre, String usuApellido, String usuCorreo, String usuTipo, String usuIdioma, String usuEstado, String usuUsuario, String usuContrasena, String usuTemp, String usuCodact, Long usuVersion) {
+        this.usuId = usuId;
         this.usuCedula = usuCedula;
         this.usuNombre = usuNombre;
         this.usuApellido = usuApellido;
@@ -55,6 +57,7 @@ public class CuUsuarioDto {
     
     
     public CuUsuarioDto(CuUsuarios usuario) {
+        this.usuId = usuario.getUsuId().toString();
         this.usuCedula = usuario.getUsuCedula();
         this.usuNombre = usuario.getUsuNombre();
         this.usuApellido = usuario.getUsuApellido();
@@ -74,6 +77,16 @@ public class CuUsuarioDto {
     
     //metodos set y get
 
+    public String getUsuId() {
+        return usuId;
+    }
+
+    public void setUsuId(String usuId) {
+        this.usuId = usuId;
+    }
+
+    
+    
     public String getUsuCedula() {
         return usuCedula;
     }

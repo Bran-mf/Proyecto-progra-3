@@ -7,13 +7,16 @@ package WsClinicaUNA.Dto;
 
 import WsClinicaUNA.model.CuMedicos;
 import WsClinicaUNA.model.CuUsuarios;
+import WsClinicaUNA.util.Convertidor;
+import java.util.List;
 
 /**
  *
  * @author ivana
  */
 public class CuMedicoDto {
-    
+    public Convertidor conv = new Convertidor();
+    public String medId;
     public String medFolio;
     public String medCodigo;
     public String medCerne;
@@ -23,8 +26,10 @@ public class CuMedicoDto {
     public String medEspacios;
     public Long medVersion;
     public CuUsuarioDto usuCedula;
+    public List<CuCitasDto> listaCucitasDto;
 
-    public CuMedicoDto(String medFolio, String medCodigo, String medCerne, String medEstado, String medInicio, String medFinal, String medEspacios, Long medVersion, CuUsuarioDto usuCedula) {
+    public CuMedicoDto(String medId, String medFolio, String medCodigo, String medCerne, String medEstado, String medInicio, String medFinal, String medEspacios, Long medVersion, CuUsuarioDto usuCedula) {
+        this.medId = medId;
         this.medFolio = medFolio;
         this.medCodigo = medCodigo;
         this.medCerne = medCerne;
@@ -37,6 +42,7 @@ public class CuMedicoDto {
     }
     
     public CuMedicoDto(CuMedicos med){
+        this.medId = med.getMedId().toString();
         this.medFolio = med.getMedFolio();
         this.medCodigo = med.getMedCodigo();
         this.medCerne = med.getMedCerne();
@@ -45,9 +51,19 @@ public class CuMedicoDto {
         this.medFinal = med.getMedFinal();
         this.medEspacios = med.getMedEspacios();
         this.medVersion = med.getMedVersion();
-        this.usuCedula = new CuUsuarioDto(med.getUsuCedula());
+        this.usuCedula = new CuUsuarioDto(med.getUsuId());
+        this.listaCucitasDto = conv.ModeloToDtoCitas(med.getCuCitasList());
     }
 
+    public String getMedId() {
+        return medId;
+    }
+
+    public void setMedId(String medId) {
+        this.medId = medId;
+    }
+
+    
     public String getMedFolio() {
         return medFolio;
     }
@@ -56,6 +72,14 @@ public class CuMedicoDto {
         this.medFolio = medFolio;
     }
 
+    public List<CuCitasDto> getListaCucitasDto() {
+        return listaCucitasDto;
+    }
+
+    public void setListaCucitasDto(List<CuCitasDto> listaCucitasDto) {
+        this.listaCucitasDto = listaCucitasDto;
+    }
+    
     public String getMedCodigo() {
         return medCodigo;
     }

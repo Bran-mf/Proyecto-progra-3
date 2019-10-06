@@ -5,19 +5,23 @@
  */
 package WsClinicaUNA.model;
 
+import WsClinicaUNA.Dto.CuMedicoDto;
+import WsClinicaUNA.util.Convertidor;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,8 +46,20 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "CuMedicos.findByMedVersion", query = "SELECT c FROM CuMedicos c WHERE c.medVersion = :medVersion")})
 public class CuMedicos implements Serializable {
 
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    
+    
+    
+    Convertidor conv = new Convertidor();
     private static final long serialVersionUID = 1L;
+    
     @Id
+    @SequenceGenerator(name = "MED_ID_GENERATOR", sequenceName = "MEDICOSEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MED_ID_GENERATOR")
+    @Basic(optional = false)
+    @Column(name = "MED_ID")
+    private Long medId;
     @Basic(optional = false)
     @Column(name = "MED_FOLIO")
     private String medFolio;
@@ -66,21 +82,19 @@ public class CuMedicos implements Serializable {
     @Column(name = "MED_ESPACIOS")
     private String medEspacios;
     @Version
+    @Column(name = "MED_VERSION")
     private Long medVersion;
-    @JoinColumn(name = "USU_CEDULA", referencedColumnName = "USU_CEDULA")
+    @JoinColumn(name = "USU_ID", referencedColumnName = "USU_ID")
     @ManyToOne(optional = false)
-    private CuUsuarios usuCedula;
+    private CuUsuarios usuId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "medFolio")
     private List<CuCitas> cuCitasList;
 
     public CuMedicos() {
     }
 
-    public CuMedicos(String medFolio) {
-        this.medFolio = medFolio;
-    }
-
-    public CuMedicos(String medFolio, String medCodigo, String medCerne, String medEstado, String medInicio, String medFinal, String medEspacios) {
+    public CuMedicos(Long medId, String medFolio, String medCodigo, String medCerne, String medEstado, String medInicio, String medFinal, String medEspacios, Long medVersion, CuUsuarios usuId) {
+        this.medId = medId;
         this.medFolio = medFolio;
         this.medCodigo = medCodigo;
         this.medCerne = medCerne;
@@ -88,7 +102,18 @@ public class CuMedicos implements Serializable {
         this.medInicio = medInicio;
         this.medFinal = medFinal;
         this.medEspacios = medEspacios;
+        this.medVersion = medVersion;
+        this.usuId = usuId;
     }
+
+    public void setMedId(Long medId) {
+        this.medId = medId;
+    }
+
+    public Long getMedId() {
+        return medId;
+    }
+
 
     public String getMedFolio() {
         return medFolio;
@@ -154,13 +179,6 @@ public class CuMedicos implements Serializable {
         this.medVersion = medVersion;
     }
 
-    public CuUsuarios getUsuCedula() {
-        return usuCedula;
-    }
-
-    public void setUsuCedula(CuUsuarios usuCedula) {
-        this.usuCedula = usuCedula;
-    }
 
     @XmlTransient
     public List<CuCitas> getCuCitasList() {
@@ -195,5 +213,27 @@ public class CuMedicos implements Serializable {
     public String toString() {
         return "WsClinicaUNA.model.CuMedicos[ medFolio=" + medFolio + " ]";
     }
+    public CuMedicos(CuMedicoDto dto){
+        this.cuCitasList= conv.dtoToCitas(dto.getListaCucitasDto());
+        this.medCerne =dto.getMedCerne();
+        this.medCodigo = dto.getMedCodigo();
+        this.medEspacios = dto.getMedEspacios();
+        this.medFinal = dto.getMedEspacios();
+        this.medFinal= dto.getMedFinal();
+        this.medFolio =dto.getMedFolio();
+        this.medInicio =dto.getMedInicio();
+        this.medVersion = dto.getMedVersion();
+        
+    }
+
+
+    public CuUsuarios getUsuId() {
+        return usuId;
+    }
+
+    public void setUsuId(CuUsuarios usuId) {
+        this.usuId = usuId;
+    }
+
     
 }

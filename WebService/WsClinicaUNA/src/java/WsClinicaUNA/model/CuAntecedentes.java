@@ -5,9 +5,8 @@
  */
 package WsClinicaUNA.model;
 
+import WsClinicaUNA.Dto.CuAntecedenteDto;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,6 +40,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "CuAntecedentes.findByAntId", query = "SELECT c FROM CuAntecedentes c WHERE c.antId = :antId")})
 public class CuAntecedentes implements Serializable {
 
+   
+
     private static final long serialVersionUID = 1L;
     
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -55,8 +56,6 @@ public class CuAntecedentes implements Serializable {
     private String antTipo;
     @Column(name = "ANT_TRATAMIENTO")
     private String antTratamiento;
-    @Column(name = "ANT_HEREDADO")
-    private Long antHeredado;
     @Column(name = "ANT_PARENTESCO")
     private String antParentesco;
     @Column(name = "ANT_ENFERMEDAD")
@@ -64,7 +63,10 @@ public class CuAntecedentes implements Serializable {
     @JoinColumn(name = "EXP_ID", referencedColumnName = "EXP_ID")
     @ManyToOne(optional = false)
     private CuExpediente expId;
+    @Column(name = "ANT_HEREDADO")
+    private Long antHeredado;
     @Version
+    @Column(name = "ANT_VERSION")
     private Long antVersion;
 
     public CuAntecedentes() {
@@ -83,6 +85,17 @@ public class CuAntecedentes implements Serializable {
         this.antEnfermedad = antEnfermedad;
         this.expId = expId;
         this.antVersion = antVersion;
+    }
+    public CuAntecedentes(CuAntecedenteDto adto){
+        this.antId = adto.getAntId();
+        this.antTipo=adto.getAntTipo();
+        this.antTratamiento=adto.getAntTratamiento();
+        this.antHeredado = adto.getAntHederado(); // si ven eso me recuerderdan att:bran
+        this.antParentesco= adto.getAntParentesco();
+        this.antEnfermedad= adto.getAntParentesco();
+        this.expId= new CuExpediente(adto.getExpId()); // esto esta  por terminarse.
+        this.antVersion = adto.getAntVersion();
+        
     }
 
     
@@ -175,5 +188,5 @@ public class CuAntecedentes implements Serializable {
     public String toString() {
         return "WsClinicaUNA.model.CuAntecedentes[ antId=" + antId + " ]";
     }
-    
+
 }

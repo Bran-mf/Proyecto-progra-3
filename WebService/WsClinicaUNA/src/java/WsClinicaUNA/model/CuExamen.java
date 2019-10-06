@@ -5,6 +5,8 @@
  */
 package WsClinicaUNA.model;
 
+import WsClinicaUNA.Dto.CuExamenDto;
+import WsClinicaUNA.util.Convertidor;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -43,6 +45,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "CuExamen.findByExaVersion", query = "SELECT c FROM CuExamen c WHERE c.exaVersion = :exaVersion")})
 public class CuExamen implements Serializable {
 
+    
+    Convertidor convertidor =new Convertidor();
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -61,12 +65,20 @@ public class CuExamen implements Serializable {
     @Column(name = "EXA_ADJUNTO")
     private String exaAdjunto;
     @Version
+    @Column(name = "EXA_VERSION")
     private Long exaVersion;
     @JoinColumn(name = "EXP_ID", referencedColumnName = "EXP_ID")
     @ManyToOne(optional = false)
     private CuExpediente expId;
 
-    public CuExamen() {
+    public CuExamen(CuExamenDto dto) {
+        this.exaAdjunto = dto.getExaAdjunto();
+        this.exaAnotacones = dto.getExaAnotacones();
+        this.exaFecha =dto.getExaFecha();
+        this.exaId =dto.getExaId();
+        this.exaNombre =dto.getExaNombre();
+        this.exaVersion=dto.getVersion();
+        this.expId= new CuExpediente(dto.getCuExpedienteDto());
     }
 
     public CuExamen(Long exaId) {
@@ -153,5 +165,10 @@ public class CuExamen implements Serializable {
     public String toString() {
         return "WsClinicaUNA.model.CuExamen[ exaId=" + exaId + " ]";
     }
+
+    public CuExamen() {
+    }
+
     
+       
 }

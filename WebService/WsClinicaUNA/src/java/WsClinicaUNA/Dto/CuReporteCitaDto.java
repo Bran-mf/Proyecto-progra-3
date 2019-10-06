@@ -37,8 +37,17 @@ public class CuReporteCitaDto {
     private String rcPlan;
     private String rcExamen;
     private CuExpediente expId; //expediente al que pertenece , llave foranea
+    private String rcTratamiento;
     //metodos
     //get and set
+
+    public String getRcTratamiento() {
+        return rcTratamiento;
+    }
+
+    public void setRcTratamiento(String rcTratamiento) {
+        this.rcTratamiento = rcTratamiento;
+    }
 
     public Date getRcFecha() {
         return rcFecha;

@@ -5,6 +5,8 @@
  */
 package WsClinicaUNA.model;
 
+import WsClinicaUNA.Dto.CuReporteCitaDto;
+import WsClinicaUNA.util.Convertidor;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -52,8 +54,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "CuReportecita.findByRcVersion", query = "SELECT c FROM CuReportecita c WHERE c.rcVersion = :rcVersion")})
 public class CuReportecita implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     
+
+    private static final long serialVersionUID = 1L;
+    Convertidor conv = new Convertidor();
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @SequenceGenerator(name = "RC_ID_GENERATOR", sequenceName = "EXPEDIENTESEQ", allocationSize = 1)
@@ -69,14 +73,10 @@ public class CuReportecita implements Serializable {
     private String rcHora;
     @Column(name = "RC_PRESION")
     private String rcPresion;
-    @Column(name = "RC_PESO")
-    private Long rcPeso;
     @Column(name = "RC_TALLA")
     private String rcTalla;
     @Column(name = "RC_TEMPERATURA")
     private String rcTemperatura;
-    @Column(name = "RC_IMC")
-    private Long rcImc;
     @Column(name = "RC_NOTASENFERMERIA")
     private String rcNotasenfermeria;
     @Column(name = "RC_RAZON")
@@ -89,8 +89,15 @@ public class CuReportecita implements Serializable {
     private String rcExamen;
     @Column(name = "RC_TRATAMIENTO")
     private String rcTratamiento;
+    @Column(name = "RC_PESO")
+    private Long rcPeso;
+    @Column(name = "RC_IMC")
+    private Long rcImc;
     @Version
+    @Column(name = "RC_VERSION")
     private Long rcVersion;
+    @Column(name = "RC_FRECCARD")
+    private String rcFreccard;
     @JoinColumn(name = "EXP_ID", referencedColumnName = "EXP_ID")
     @ManyToOne(optional = false)
     private CuExpediente expId;
@@ -125,8 +132,26 @@ public class CuReportecita implements Serializable {
         this.rcVersion = rcVersion;
         this.expId = expId;
     }
-    
-    
+
+    public CuReportecita(CuReporteCitaDto dto) {
+        this.expId = new CuExpediente(dto.getExpId());
+        this.rcExamen = dto.getRcExamen();
+        this.rcFecha = dto.getRcFecha();
+        this.rcHora = dto.getRcHora();
+        this.rcId = dto.getRcId();
+        this.rcImc = dto.getRcImc();
+        this.rcNotasenfermeria = dto.getRcNotasenfermeria();
+        this.rcObservaciones = dto.getRcObservaciones();
+        this.rcPeso = dto.getRcPeso();
+        this.rcPlan = dto.getRcPlan();
+        this.rcPresion = dto.getRcPlan();
+        this.rcPresion = dto.getRcPresion();
+        this.rcRazon = dto.getRcPresion();
+        this.rcTalla = dto.getRcTalla();
+        this.rcTemperatura = dto.getRcTemperatura();
+        this.rcTratamiento = dto.getRcTratamiento();
+        
+    }
 
     public Date getRcFecha() {
         return rcFecha;
@@ -280,5 +305,13 @@ public class CuReportecita implements Serializable {
     public String toString() {
         return "WsClinicaUNA.model.CuReportecita[ rcId=" + rcId + " ]";
     }
-    
+
+    public String getRcFreccard() {
+        return rcFreccard;
+    }
+
+    public void setRcFreccard(String rcFreccard) {
+        this.rcFreccard = rcFreccard;
+    }
+
 }

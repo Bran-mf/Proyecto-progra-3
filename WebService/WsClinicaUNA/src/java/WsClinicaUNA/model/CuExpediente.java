@@ -5,6 +5,8 @@
  */
 package WsClinicaUNA.model;
 
+import WsClinicaUNA.Dto.CuExpedienteDto;
+import WsClinicaUNA.util.Convertidor;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -37,6 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "CuExpediente.findByExpId", query = "SELECT c FROM CuExpediente c WHERE c.expId = :expId")})
 public class CuExpediente implements Serializable {
 
+    
+    Convertidor conv = new Convertidor();
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -44,12 +48,12 @@ public class CuExpediente implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EXP_ID_GENERATOR")
     @Basic(optional = false)
     @Column(name = "EXP_ID")
-    private BigDecimal expId;
+    private Long expId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "expId")
     private List<CuReportecita> cuReportecitaList;
-    @JoinColumn(name = "PAC_CEDULA", referencedColumnName = "PAC_CEDULA")
-    @ManyToOne(optional = false)
-    private CuPacientes pacCedula;
+    @JoinColumn(name = "PAC_ID", referencedColumnName = "PAC_ID")
+    @ManyToOne
+    private CuPacientes pacId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "expId")
     private List<CuExamen> cuExamenList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "expId")
@@ -58,15 +62,19 @@ public class CuExpediente implements Serializable {
     public CuExpediente() {
     }
 
-    public CuExpediente(BigDecimal expId) {
+    public CuExpediente(Long expId) {
         this.expId = expId;
     }
 
-    public BigDecimal getExpId() {
+    CuExpediente(CuExpediente expId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Long getExpId() {
         return expId;
     }
 
-    public void setExpId(BigDecimal expId) {
+    public void setExpId(Long expId) {
         this.expId = expId;
     }
 
@@ -77,14 +85,6 @@ public class CuExpediente implements Serializable {
 
     public void setCuReportecitaList(List<CuReportecita> cuReportecitaList) {
         this.cuReportecitaList = cuReportecitaList;
-    }
-
-    public CuPacientes getPacCedula() {
-        return pacCedula;
-    }
-
-    public void setPacCedula(CuPacientes pacCedula) {
-        this.pacCedula = pacCedula;
     }
 
     @XmlTransient
@@ -128,6 +128,22 @@ public class CuExpediente implements Serializable {
     @Override
     public String toString() {
         return "WsClinicaUNA.model.CuExpediente[ expId=" + expId + " ]";
+    }
+    public CuExpediente(CuExpedienteDto dto){
+        this.cuAntecedentesList =conv.dtoToAntecedentes(dto.getCuAntecedentesesList());
+        this.cuExamenList = conv.dtoToExamenes(dto.getCuExamensList());
+        this.cuReportecitaList =conv.DtoToDtoReporteCitas(dto.getCuReporteCitaList());
+        this.expId = dto.getExpId();
+        this.pacId = new CuPacientes(dto.getCuPaciente());
+        
+    }
+
+    public CuPacientes getPacId() {
+        return pacId;
+    }
+
+    public void setPacId(CuPacientes pacId) {
+        this.pacId = pacId;
     }
     
 }

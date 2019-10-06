@@ -30,9 +30,10 @@ public class CuCitasDto {
     private Date citFecha;
     private String citHora;
     private String citEspacios;
-    private CuMedicoDto medFolio;
-    private CuPacienteDto pacCedula;
-    private CuUsuarioDto usuCedula;
+    private CuMedicoDto med;
+    private CuPacienteDto pacId;
+    private CuUsuarioDto usuId;
+    private Long version;
 
     public Long getCitId() {
         return citId;
@@ -98,28 +99,30 @@ public class CuCitasDto {
         this.citEspacios = citEspacios;
     }
 
-    public CuMedicoDto getMedFolio() {
-        return medFolio;
+    public CuMedicoDto getMed() {
+        return med;
     }
 
-    public void setMedFolio(CuMedicoDto medFolio) {
-        this.medFolio = medFolio;
+    public void setMed(CuMedicoDto med) {
+        this.med = med;
     }
 
-    public CuPacienteDto getPacCedula() {
-        return pacCedula;
+    
+
+    public CuPacienteDto getPacId() {
+        return pacId;
     }
 
-    public void setPacCedula(CuPacienteDto pacCedula) {
-        this.pacCedula = pacCedula;
+    public void setPacId(CuPacienteDto pacId) {
+        this.pacId = pacId;
     }
 
-    public CuUsuarioDto getUsuCedula() {
-        return usuCedula;
+    public CuUsuarioDto getUsuId() {
+        return usuId;
     }
 
-    public void setUsuCedula(CuUsuarioDto usuCedula) {
-        this.usuCedula = usuCedula;
+    public void setUsuId(CuUsuarioDto usuId) {
+        this.usuId = usuId;
     }
 
     public CuCitasDto(Long citId, String citEstado, String citMotivo, String citTelefono, String citCorreo, Date citFecha, String citHora, String citEspacios, CuMedicos medFolio, CuPacientes pacCedula, CuUsuarios usuCedula) {
@@ -131,9 +134,9 @@ public class CuCitasDto {
         this.citFecha = citFecha;
         this.citHora = citHora;
         this.citEspacios = citEspacios;
-        this.medFolio = new CuMedicoDto(medFolio);
-        this.pacCedula = new CuPacienteDto(pacCedula);
-        this.usuCedula = new CuUsuarioDto(usuCedula);
+        this.med = new CuMedicoDto(medFolio);
+        this.pacId = new CuPacienteDto(pacCedula);
+        this.usuId = new CuUsuarioDto(usuCedula);
     }
     
     public CuCitasDto(CuCitas cita) {
@@ -145,9 +148,16 @@ public class CuCitasDto {
         this.citFecha = cita.getCitFecha();
         this.citHora = cita.getCitHora();
         this.citEspacios = cita.getCitEspacios();
-        this.medFolio = new CuMedicoDto(cita.getMedFolio()) ;
-        this.pacCedula = new CuPacienteDto ( cita.getPacCedula());
-        this.usuCedula = new CuUsuarioDto(cita.getUsuCedula());
+        this.med = new CuMedicoDto(cita.getMed()) ;
+        this.pacId = new CuPacienteDto ( cita.getPacId());
+        this.usuId = new CuUsuarioDto(cita.getUsuId());
+    }
+
+    public Long getCitVersion() {
+        return this.version;
+    }
+    public void setCitVersion(Long id){
+        this.version =id;
     }
     
     

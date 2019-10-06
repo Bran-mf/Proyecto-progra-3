@@ -7,8 +7,6 @@ package WsClinicaUNA.Dto;
 
 import WsClinicaUNA.model.CuAntecedentes;
 import WsClinicaUNA.model.CuExpediente;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -27,12 +25,22 @@ public class CuAntecedenteDto {
     private String antEnfermedad;
     private Long antId;
     private CuExpedienteDto expId; 
+    private Long antVersion;
     //metodos
     //get and set
 
     public String getAntTipo() {
         return antTipo;
     }
+
+    public Long getAntHededado() {
+        return antHededado;
+    }
+
+    public void setAntHededado(Long antHededado) {
+        this.antHededado = antHededado;
+    }
+    
 
     public void setAntTipo(String antTipo) {
         this.antTipo = antTipo;
@@ -108,6 +116,14 @@ public class CuAntecedenteDto {
         this.antEnfermedad = antecedentes.getAntEnfermedad();
         this.antId = antecedentes.getAntId();
         this.expId = new CuExpedienteDto(antecedentes.getExpId());
+        this.antVersion = antecedentes.getAntVersion();
+    }
+
+    public Long getAntVersion() {
+        return antVersion;
+    }
+    public void setAntVersion(Long vs){
+        this.antVersion= vs;
     }
     
 }

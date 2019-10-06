@@ -6,17 +6,22 @@
 package WsClinicaUNA.model;
 
 import WsClinicaUNA.Dto.CuUsuarioDto;
+import WsClinicaUNA.util.Convertidor;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -46,12 +51,16 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "CuUsuarios.Activacion", query = "SELECT c FROM CuUsuarios c WHERE c.usuCodact = :usuCodact")
 })
 public class CuUsuarios implements Serializable {
-
     
-
+    Convertidor conv = new Convertidor();
     private static final long serialVersionUID = 1L;
     
     @Id
+    @SequenceGenerator(name = "USU_ID_GENERATOR", sequenceName = "USUARIOSEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USU_ID_GENERATOR")
+    @Basic(optional = false)
+    @Column(name = "USU_ID")
+    private Long usuId;
     @Basic(optional = false)
     @Column(name = "USU_CEDULA")
     private String usuCedula;
@@ -82,16 +91,16 @@ public class CuUsuarios implements Serializable {
     @Basic(optional = false)
     @Column(name = "USU_TEMP")
     private String usuTemp;
-    @Version
-    @Column(name = "USU_VERSION")
-    private Long usuVersion;
     @Column(name = "USU_CODACT")
     private String usuCodact;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuCedula")
     private List<CuMedicos> cuMedicosList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuCedula")
     private List<CuCitas> cuCitasList;
-
+    @Version
+    @Column(name = "USU_VERSION")
+    private Long usuVersion;
+    
     public CuUsuarios() {
     }
 
@@ -263,6 +272,31 @@ public class CuUsuarios implements Serializable {
 
     public void setUsuCodact(String usuCodact) {
         this.usuCodact = usuCodact;
+    }
+
+    public CuUsuarios(Long usuId) {
+        this.usuId = usuId;
+    }
+
+    public CuUsuarios(Long usuId, String usuContrasena) {
+        this.usuId = usuId;
+        this.usuContrasena = usuContrasena;
+    }
+
+    public String getUsuContraseña() {
+        return usuContrasena;
+    }
+
+    public void setUsuContraseña(String usuContraseña) {
+        this.usuContrasena = usuContraseña;
+    }
+
+    public Long getUsuId() {
+        return usuId;
+    }
+
+    public void setUsuId(Long usuId) {
+        this.usuId = usuId;
     }
     
 }

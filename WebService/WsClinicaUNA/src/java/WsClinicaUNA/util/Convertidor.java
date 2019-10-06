@@ -73,7 +73,7 @@ public class Convertidor {
      public List<CuReportecita> DtoToDtoReporteCitas(List<CuReporteCitaDto> lista) {
         List<CuReportecita> reporteList = new ArrayList<>();
         for (CuReporteCitaDto reporte : lista) {
-            reporteList.add(new CuReporteCita(reporte));
+            reporteList.add(new CuReportecita(reporte));
         }
         return reporteList;
     }
@@ -89,7 +89,7 @@ public class Convertidor {
     public List<CuExamen> dtoToExamenes(List<CuExamenDto> lista) {
         List<CuExamen> examenList = new ArrayList<>();
         for (CuExamenDto reporte : lista) {
-            examenList.add(new CuExamenDto(reporte));
+            examenList.add(new CuExamen(reporte));
         }
         return examenList;
     }
@@ -97,14 +97,14 @@ public class Convertidor {
     public List<CuAntecedentes> dtoToAntecedentes(List<CuAntecedenteDto> lista) {
         List<CuAntecedentes> antecedenteList = new ArrayList<>();
         for (CuAntecedenteDto reporte : lista) {
-            antecedenteList.add(new CuAntecedenteDto(reporte));
+            antecedenteList.add(new CuAntecedentes(reporte));
         }
         return antecedenteList;
     }
      public List<CuCitas> dtoToCitas(List<CuCitasDto> lista) {
         List<CuCitas> reporteList = new ArrayList<>();
         for (CuCitasDto reporte : lista) {
-            reporteList.add(new CuCitasDto(reporte));
+            reporteList.add(new CuCitas(reporte));
         }
         return reporteList;
     }
