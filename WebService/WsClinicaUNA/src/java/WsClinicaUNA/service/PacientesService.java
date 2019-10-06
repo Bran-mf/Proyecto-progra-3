@@ -43,16 +43,26 @@ public class PacientesService {
                 CuPacienteDto cuPacienteDto = new CuPacienteDto(cuPacientes);
                 if (cuPacienteDto == null) {
                     return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "No se encontro el atributo buscado", "error Paciente Lugar: Server No Target");
-                } 
+                }
                 em.remove(cuPacientes);
 
             }
-            return new Respuesta(true,CodigoRespuesta.CORRECTO,"","");
-            
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "");
+
         } catch (Exception ex) {
-             return new Respuesta(false, CodigoRespuesta.ERROR_CLIENTE, "ocurrio un error", "Error Exception BorrarPaciente Lugar:Server");
+            return new Respuesta(false, CodigoRespuesta.ERROR_CLIENTE, "ocurrio un error", "Error Exception BorrarPaciente Lugar:Server");
         }
-       
+
     }
+    public  Respuesta guardarPaciente(CuPacienteDto cuPacienteDto){
+        try{
+            CuPacientes cuPaciente;
+            String mensaje;
+            cuPaciente = em.find(CuPacientes.class, cuPacienteDto.getPacCedula());
+            
+        }catch(Exception ex){}
+    }
+    
+    
 
 }
