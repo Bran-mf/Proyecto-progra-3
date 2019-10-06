@@ -12,7 +12,7 @@ import WsClinicaUNA.model.CuUsuarios;
  *
  * @author ivana
  */
-public class cuMedicoDto {
+public class CuMedicoDto {
     
     public String medFolio;
     public String medCodigo;
@@ -24,7 +24,7 @@ public class cuMedicoDto {
     public Long medVersion;
     public CuUsuarioDto usuCedula;
 
-    public cuMedicoDto(String medFolio, String medCodigo, String medCerne, String medEstado, String medInicio, String medFinal, String medEspacios, Long medVersion, CuUsuarioDto usuCedula) {
+    public CuMedicoDto(String medFolio, String medCodigo, String medCerne, String medEstado, String medInicio, String medFinal, String medEspacios, Long medVersion, CuUsuarioDto usuCedula) {
         this.medFolio = medFolio;
         this.medCodigo = medCodigo;
         this.medCerne = medCerne;
@@ -36,7 +36,7 @@ public class cuMedicoDto {
         this.usuCedula = usuCedula;
     }
     
-    public cuMedicoDto(CuMedicos med){
+    public CuMedicoDto(CuMedicos med){
         this.medFolio = med.getMedFolio();
         this.medCodigo = med.getMedCodigo();
         this.medCerne = med.getMedCerne();

@@ -28,7 +28,7 @@ public class CuExpedienteDto {
     private Long expId;
     private List<CuReporteCitaDto> cuReporteCitaList; //lista re citas del paciente
     private CuPacientes cuPaciente; //paciente
-    private List<cuExamenDto> cuExamensList; //lista de examenes
+    private List<CuExamenDto> cuExamensList; //lista de examenes
     private List<CuAntecedenteDto> cuAntecedentesesList; //listas de antecedentes de esta persona
     //metodos 
     //get and set 
@@ -57,11 +57,11 @@ public class CuExpedienteDto {
         this.cuPaciente = cuPaciente;
     }
 
-    public List<cuExamenDto> getCuExamensList() {
+    public List<CuExamenDto> getCuExamensList() {
         return cuExamensList;
     }
 
-    public void setCuExamensList(List<cuExamenDto> cuExamensList) {
+    public void setCuExamensList(List<CuExamenDto> cuExamensList) {
         this.cuExamensList = cuExamensList;
     }
 
@@ -74,7 +74,7 @@ public class CuExpedienteDto {
     }
     //constructor 
 
-    public CuExpedienteDto(Long id, List<CuReporteCitaDto> cuReporteCitaList, CuPacientes cuPaciente, List<cuExamenDto> cuExamensList, List<CuAntecedenteDto> cuAntecedentesesList) {
+    public CuExpedienteDto(Long id, List<CuReporteCitaDto> cuReporteCitaList, CuPacientes cuPaciente, List<CuExamenDto> cuExamensList, List<CuAntecedenteDto> cuAntecedentesesList) {
         this.expId = id;
         this.cuReporteCitaList = cuReporteCitaList;
         this.cuPaciente = cuPaciente;
@@ -111,10 +111,10 @@ public class CuExpedienteDto {
         return reporteList;
     }
 
-    public List<cuExamenDto> ModeloToDtoExamenes(List<CuExamen> lista) {
-        List<cuExamenDto> examenList = new ArrayList<>();
+    public List<CuExamenDto> ModeloToDtoExamenes(List<CuExamen> lista) {
+        List<CuExamenDto> examenList = new ArrayList<>();
         for (CuExamen reporte : lista) {
-            examenList.add(new cuExamenDto(reporte));
+            examenList.add(new CuExamenDto(reporte));
         }
         return examenList;
     }

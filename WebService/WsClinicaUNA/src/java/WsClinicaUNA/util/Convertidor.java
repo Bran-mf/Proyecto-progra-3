@@ -6,10 +6,12 @@
 package WsClinicaUNA.util;
 
 import WsClinicaUNA.Dto.CuAntecedenteDto;
+import WsClinicaUNA.Dto.CuCitasDto;
 import WsClinicaUNA.Dto.CuExpedienteDto;
 import WsClinicaUNA.Dto.CuReporteCitaDto;
-import WsClinicaUNA.Dto.cuExamenDto;
+import WsClinicaUNA.Dto.CuExamenDto;
 import WsClinicaUNA.model.CuAntecedentes;
+import WsClinicaUNA.model.CuCitas;
 import WsClinicaUNA.model.CuExamen;
 import WsClinicaUNA.model.CuExpediente;
 import WsClinicaUNA.model.CuReportecita;
@@ -25,6 +27,10 @@ El proposito de esta calse es hacer todas las conversiones que se lleguen a nece
 conversiones mas basicas de Listas de modelos, a listas de  DTO de estos modelos
 */
 public class Convertidor {
+    
+    
+    
+    // de modelos a dto
     public List<CuReporteCitaDto> ModeloToDtoReporteCitas(List<CuReportecita> lista) {
         List<CuReporteCitaDto> reporteList = new ArrayList<>();
         for (CuReportecita reporte : lista) {
@@ -41,10 +47,10 @@ public class Convertidor {
         return reporteList;
     }
 
-    public List<cuExamenDto> ModeloToDtoExamenes(List<CuExamen> lista) {
-        List<cuExamenDto> examenList = new ArrayList<>();
+    public List<CuExamenDto> ModeloToDtoExamenes(List<CuExamen> lista) {
+        List<CuExamenDto> examenList = new ArrayList<>();
         for (CuExamen reporte : lista) {
-            examenList.add(new cuExamenDto(reporte));
+            examenList.add(new CuExamenDto(reporte));
         }
         return examenList;
     }
@@ -55,5 +61,51 @@ public class Convertidor {
             antecedenteList.add(new CuAntecedenteDto(reporte));
         }
         return antecedenteList;
+    }
+     public List<CuCitasDto> ModeloToDtoCitas(List<CuCitas> lista) {
+        List<CuCitasDto> reporteList = new ArrayList<>();
+        for (CuCitas reporte : lista) {
+            reporteList.add(new CuCitasDto(reporte));
+        }
+        return reporteList;
+    }
+     //de Dto a modelos
+     public List<CuReportecita> DtoToDtoReporteCitas(List<CuReporteCitaDto> lista) {
+        List<CuReportecita> reporteList = new ArrayList<>();
+        for (CuReporteCitaDto reporte : lista) {
+            reporteList.add(new CuReporteCita(reporte));
+        }
+        return reporteList;
+    }
+
+    public List<CuExpediente> dtoToExpediente(List<CuExpedienteDto> lista) {
+        List<CuExpediente> reporteList = new ArrayList<>();
+        for (CuExpedienteDto reporte : lista) {
+            reporteList.add(new CuExpediente(reporte));
+        }
+        return reporteList;
+    }
+
+    public List<CuExamen> dtoToExamenes(List<CuExamenDto> lista) {
+        List<CuExamen> examenList = new ArrayList<>();
+        for (CuExamenDto reporte : lista) {
+            examenList.add(new CuExamenDto(reporte));
+        }
+        return examenList;
+    }
+
+    public List<CuAntecedentes> dtoToAntecedentes(List<CuAntecedenteDto> lista) {
+        List<CuAntecedentes> antecedenteList = new ArrayList<>();
+        for (CuAntecedenteDto reporte : lista) {
+            antecedenteList.add(new CuAntecedenteDto(reporte));
+        }
+        return antecedenteList;
+    }
+     public List<CuCitas> dtoToCitas(List<CuCitasDto> lista) {
+        List<CuCitas> reporteList = new ArrayList<>();
+        for (CuCitasDto reporte : lista) {
+            reporteList.add(new CuCitasDto(reporte));
+        }
+        return reporteList;
     }
 }

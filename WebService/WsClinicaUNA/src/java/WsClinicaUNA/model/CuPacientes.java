@@ -5,6 +5,7 @@
  */
 package WsClinicaUNA.model;
 
+import WsClinicaUNA.Dto.CuPacienteDto;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
@@ -85,6 +86,16 @@ public class CuPacientes implements Serializable {
         this.pacCorreo = pacCorreo;
         this.pacGenero = pacGenero;
         this.pacNacimiento = pacNacimiento;
+    }
+
+    public CuPacientes(CuPacienteDto cuPacienteDto) {
+        this.pacNombre =cuPacienteDto.getPacNombre();
+        this.pacCedula=cuPacienteDto.getPacCedula();
+        this.pacApellido=cuPacienteDto.getPacApellido();
+        this.pacGenero=cuPacienteDto.getPacGenero();
+        this.pacVersion =cuPacienteDto.getVersion();
+        //this.
+        
     }
 
     public String getPacNombre() {

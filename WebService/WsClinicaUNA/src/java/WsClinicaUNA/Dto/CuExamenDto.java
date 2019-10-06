@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Bran
  */@XmlRootElement(name="Examen") //
 @XmlAccessorType(XmlAccessType.FIELD)
-public class cuExamenDto {
+public class CuExamenDto {
     private Long exaId;
     private Date exaFecha;
     private String exaNombre;
@@ -66,7 +66,7 @@ public class cuExamenDto {
         this.exaAdjunto = exaAdjunto;
     }
 
-    public cuExamenDto(Long exaId, Date exaFecha, String exaNombre, String exaAnotaciones, String exaAdjunto) {
+    public CuExamenDto(Long exaId, Date exaFecha, String exaNombre, String exaAnotaciones, String exaAdjunto) {
         this.exaId = exaId;
         this.exaFecha = exaFecha;
         this.exaNombre = exaNombre;
@@ -74,7 +74,7 @@ public class cuExamenDto {
         this.exaAdjunto = exaAdjunto;
     }
 
-    public cuExamenDto(CuExamen exa) {
+    public CuExamenDto(CuExamen exa) {
         this.exaId = exa.getExaId();
         this.exaFecha = exa.getExaFecha();
         this.exaNombre = exa.getExaNombre();

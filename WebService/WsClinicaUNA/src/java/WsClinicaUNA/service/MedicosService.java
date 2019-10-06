@@ -5,7 +5,7 @@
  */
 package WsClinicaUNA.service;
 
-import WsClinicaUNA.Dto.cuMedicoDto;
+import WsClinicaUNA.Dto.CuMedicoDto;
 import WsClinicaUNA.model.CuMedicos;
 import WsClinicaUNA.util.CodigoRespuesta;
 import WsClinicaUNA.util.Respuesta;
@@ -41,7 +41,7 @@ public class MedicosService {
             if (!folio.equals("")) {
                 CuMedicos cuMedico;
                 cuMedico = em.find(CuMedicos.class, folio);
-                cuMedicoDto medicoDto = new cuMedicoDto(cuMedico);
+                CuMedicoDto medicoDto = new CuMedicoDto(cuMedico);
                 if (medicoDto == null) {
                     return new Respuesta(false, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encontro el medico", "error cuMedico=null");
                 }
@@ -55,7 +55,7 @@ public class MedicosService {
         
 
     }
-//    public Respuesta GuardarMedico(cuMedicoDto dto){
+//    public Respuesta GuardarMedico(CuMedicoDto dto){
 //        try{
 //           Query query = em.createNamedQuery("")
 //        }

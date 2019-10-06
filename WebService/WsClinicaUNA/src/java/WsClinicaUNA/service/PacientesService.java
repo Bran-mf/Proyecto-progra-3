@@ -54,15 +54,25 @@ public class PacientesService {
         }
 
     }
-    public  Respuesta guardarPaciente(CuPacienteDto cuPacienteDto){
-        try{
+
+    public Respuesta guardarPaciente(CuPacienteDto cuPacienteDto) {
+        try {
             CuPacientes cuPaciente;
             String mensaje;
             cuPaciente = em.find(CuPacientes.class, cuPacienteDto.getPacCedula());
-            
-        }catch(Exception ex){}
+            if (cuPaciente == null) {
+                cuPaciente = new CuPacientes(cuPacienteDto); // crear el constructor
+                em.persist(cuPaciente);
+                mensaje = "Paciente instado";
+            }
+            cuPaciente = new CuPacientes(cuPacienteDto);
+            em.merge(cuPaciente);
+            mensaje = "Paciente Actualizado";
+            em.flush();
+            return new Respuesta(true, CodigoRespuesta.CORRECTO, "", "");
+        } catch (Exception ex) {
+            return new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error en la operacion", "Error  GuardarPAciente Lugar:server");
+        }
     }
-    
-    
 
 }

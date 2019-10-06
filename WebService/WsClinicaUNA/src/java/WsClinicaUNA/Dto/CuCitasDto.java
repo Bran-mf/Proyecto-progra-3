@@ -30,7 +30,7 @@ public class CuCitasDto {
     private Date citFecha;
     private String citHora;
     private String citEspacios;
-    private cuMedicoDto medFolio;
+    private CuMedicoDto medFolio;
     private CuPacienteDto pacCedula;
     private CuUsuarioDto usuCedula;
 
@@ -98,11 +98,11 @@ public class CuCitasDto {
         this.citEspacios = citEspacios;
     }
 
-    public cuMedicoDto getMedFolio() {
+    public CuMedicoDto getMedFolio() {
         return medFolio;
     }
 
-    public void setMedFolio(cuMedicoDto medFolio) {
+    public void setMedFolio(CuMedicoDto medFolio) {
         this.medFolio = medFolio;
     }
 
@@ -131,7 +131,7 @@ public class CuCitasDto {
         this.citFecha = citFecha;
         this.citHora = citHora;
         this.citEspacios = citEspacios;
-        this.medFolio = new cuMedicoDto(medFolio);
+        this.medFolio = new CuMedicoDto(medFolio);
         this.pacCedula = new CuPacienteDto(pacCedula);
         this.usuCedula = new CuUsuarioDto(usuCedula);
     }
@@ -145,7 +145,7 @@ public class CuCitasDto {
         this.citFecha = cita.getCitFecha();
         this.citHora = cita.getCitHora();
         this.citEspacios = cita.getCitEspacios();
-        this.medFolio = new cuMedicoDto(cita.getMedFolio()) ;
+        this.medFolio = new CuMedicoDto(cita.getMedFolio()) ;
         this.pacCedula = new CuPacienteDto ( cita.getPacCedula());
         this.usuCedula = new CuUsuarioDto(cita.getUsuCedula());
     }
