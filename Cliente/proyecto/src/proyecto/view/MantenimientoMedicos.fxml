@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controller.MantenimientoMedicosController">
+   <center>
+      <VBox prefHeight="533.0" prefWidth="746.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="67.0" prefWidth="600.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="751.0" text="Mantenimiento de medicos" />
+               </children>
+            </HBox>
+            <HBox prefHeight="256.0" prefWidth="746.0">
+               <children>
+                  <TableView fx:id="tv_medicos" onMouseClicked="#cargarMedico" prefHeight="172.0" prefWidth="746.0">
+                    <columns>
+                      <TableColumn fx:id="clm_Codigo" prefWidth="151.0" text="Codigo" />
+                      <TableColumn fx:id="clm_folio" prefWidth="147.0" text="Folio" />
+                        <TableColumn fx:id="clm_carnet" prefWidth="178.0" text="Carned" />
+                        <TableColumn fx:id="clm_estado" prefWidth="139.0" text="Estado" />
+                        <TableColumn fx:id="clm_espacios" prefWidth="130.0" text="Espacios por Hora" />
+                    </columns>
+                  </TableView>
+               </children>
+            </HBox>
+            <HBox prefHeight="133.0" prefWidth="746.0">
+               <children>
+                  <VBox prefHeight="288.0" prefWidth="107.0">
+                     <children>
+                        <Label fx:id="lbl_folio001" alignment="BOTTOM_CENTER" prefHeight="31.0" prefWidth="108.0" text="Folio" />
+                        <Label fx:id="lbl_carnet001" alignment="BOTTOM_CENTER" prefHeight="37.0" prefWidth="105.0" text="Carnet" />
+                        <Label fx:id="lbl_codigo001" alignment="BOTTOM_CENTER" prefHeight="35.0" prefWidth="100.0" text="Codigo" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="288.0" prefWidth="250.0">
+                     <children>
+                        <JFXTextField fx:id="tf_folio001" prefHeight="25.0" prefWidth="152.0" />
+                        <JFXTextField fx:id="tf_carnet001" prefHeight="36.0" prefWidth="162.0" />
+                        <JFXTextField fx:id="tf_codigo001" prefHeight="40.0" prefWidth="162.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="122.0" prefWidth="104.0">
+                     <children>
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="139.0" text="Inicio Jornada" />
+                        <Label alignment="BOTTOM_CENTER" prefHeight="39.0" prefWidth="139.0" text="Final Jornada" />
+                        <Label alignment="BOTTOM_CENTER" prefHeight="40.0" prefWidth="139.0" text="Espacios por hora" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="242.0" prefWidth="287.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="32.0" prefWidth="600.0">
+                           <children>
+                              <JFXTimePicker fx:id="tf_inicioJornada001" prefHeight="32.0" prefWidth="392.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="38.0" prefWidth="600.0">
+                           <children>
+                              <JFXTimePicker fx:id="tf_finalJornada" prefHeight="36.0" prefWidth="400.0" />
+                           </children>
+                        </HBox>
+                        <JFXComboBox fx:id="tf_espaciosHora" prefHeight="37.0" prefWidth="388.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="60.0" prefWidth="746.0">
+               <children>
+                  <AnchorPane prefHeight="97.0" prefWidth="773.0">
+                     <children>
+                        <GridPane layoutX="-3.0" layoutY="-7.0" prefHeight="95.0" prefWidth="746.0">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <JFXButton fx:id="btn_guardar" onAction="#guardarEditar_medico" prefHeight="25.0" prefWidth="162.0" text="Guardar/Modificar" />
+                              <JFXButton fx:id="btn_editar" onAction="#eliminar_medico" prefHeight="25.0" prefWidth="162.0" text="Eliminar" GridPane.columnIndex="1" />
+                              <JFXButton fx:id="btn_editar" onAction="#buscar_medico" prefHeight="25.0" prefWidth="162.0" text="Buscar" GridPane.columnIndex="2" />
+                              <JFXButton fx:id="btn_limpiar" onAction="#limpiar_campos" prefHeight="25.0" prefWidth="162.0" text="Limpiar" GridPane.columnIndex="3" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

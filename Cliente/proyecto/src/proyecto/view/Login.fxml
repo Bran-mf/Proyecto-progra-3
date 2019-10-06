@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="625.0" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controller.LoginController">
+   <children>
+      <Label fx:id="LBL_TB" layoutX="184.0" layoutY="361.0" prefHeight="42.0" prefWidth="116.0" text="ESPAÑOL" />
+      <Label fx:id="LBL_TITULO" layoutX="22.0" layoutY="14.0" prefHeight="66.0" prefWidth="556.0" text="INICIAR SESION">
+         <font>
+            <Font name="Eras Medium ITC" size="15.0" />
+         </font></Label>
+      <JFXButton fx:id="btn_Registrarse" layoutX="217.0" layoutY="299.0" onAction="#accionRegistrarse" prefHeight="42.0" prefWidth="190.0" text="REGISTRARSE" />
+      <JFXButton fx:id="btn_Acceder" layoutX="420.0" layoutY="299.0" onAction="#accion_Acceder" prefHeight="42.0" prefWidth="190.0" text="ACCEDER" />
+      <JFXTextField fx:id="tF_usuario001" layoutX="124.0" layoutY="122.0" prefHeight="42.0" prefWidth="433.0" promptText="NOMBRE DE USUARIO" />
+      <ImageView fx:id="iv_usu" fitHeight="66.0" fitWidth="71.0" layoutX="44.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="iv_con" fitHeight="66.0" fitWidth="71.0" layoutX="44.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXButton fx:id="btn_Ayuda" layoutX="15.0" layoutY="299.0" onAction="#accionHelp" prefHeight="42.0" prefWidth="190.0" text="AYUDA" />
+      <JFXTextField fx:id="tF_password001" layoutX="124.0" layoutY="211.0" prefHeight="42.0" prefWidth="433.0" promptText="CONTRASEÑA" />
+      <JFXToggleButton fx:id="tg_idioma" layoutX="255.0" layoutY="353.0" onAction="#accionIdioma" prefHeight="42.0" prefWidth="163.0" text="ENGLISH" />
+   </children>
+</AnchorPane>

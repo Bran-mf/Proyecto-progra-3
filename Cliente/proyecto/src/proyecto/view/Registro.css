@@ -1,0 +1,71 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13/09/2019, 04:18:53 PM
+    Author     : IVAN
+*/
+
+.root{
+    -fx-background-color: #1d1d1d;
+}
+
+#imv_fondo{
+    -fx-image: url('../resources/loging.png');
+    -fx-opacity: 0.1;
+}
+
+.label{
+    -fx-font: bold 20px "Courier";
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}
+
+#lbl_Titulo{
+    -fx-font-size: 30px;
+    -fx-font-family: "Arial"
+}
+
+.jfx-button{
+    -fx-opacity: 0.9;
+    -fx-text-fill: white;
+    -fx-font: bold 13px "Courier";
+    -jfx-button-type: FLAT;
+}
+
+#btn_aceptar{
+    -fx-background-color: #0f6119;
+}
+
+#btn_Cancelar{ 
+    -fx-background-color: #660000;
+}
+
+.jfx-text-field{
+    -fx-alignment: CENTER_LEFT;
+    -jfx-focus-color: white;
+    -jfx-unfocus-color: white;
+
+    -fx-prompt-text-fill: white;
+    -fx-font: bold 15px "Courier";
+    -jfx-label-float: true;
+    -fx-text-fill: white;
+}
+
+.jfx-radio-button{
+    -fx-font: bold 15px "Courier";
+    -fx-text-fill: white;
+    -jfx-selected-color: white;
+}
+
+#LBL_TB{
+    -fx-font-size: 15px;
+}
+
+.jfx-toggle-button{
+    -fx-font: bold 15px "Courier";
+    -fx-text-fill: white;
+    -jfx-toggle-color: royalblue;
+}

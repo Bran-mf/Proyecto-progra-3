@@ -1,0 +1,80 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13/09/2019, 04:18:53 PM
+    Author     : IVAN
+*/
+
+.root{
+    -fx-background-color: #1d1d1d;
+}
+
+#imv_fondo{
+    -fx-image: url('../resources/loging.png');
+    -fx-opacity: 0.1;
+}
+
+#iv_usu{
+    -fx-image: url('../resources/user.png');
+}
+
+#iv_con{
+    -fx-image: url('../resources/password.png');
+}
+
+#imv_ver{
+    -fx-image: url('../resources/see2.png');
+}
+
+.label{
+    -fx-font: bold 35px "Arial";
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}
+
+.jfx-button{
+    -fx-background-color: royalblue;
+    -fx-text-fill: white;
+    -fx-font: bold 13px "Courier";
+    -jfx-button-type: FLAT;
+    -fx-opacity: 0.8;
+}
+
+#btn_Acceder{
+    -fx-background-color: #0f6119;
+}
+
+.jfx-text-field{
+    -fx-opacity: 0.9;
+    -jfx-focus-color: white;
+    -jfx-unfocus-color: white;
+    -fx-prompt-text-fill: white;
+    -fx-font: bold 15px "Courier";
+    -jfx-label-float: true;
+    -fx-text-fill: white;
+}
+
+.jfx-password-field{
+    -fx-alignment: CENTER_LEFT;
+    -jfx-focus-color: white;
+    -jfx-unfocus-color: white;
+
+    -fx-prompt-text-fill: white;
+    -fx-font: bold 15px "Courier";
+    -jfx-label-float: true;
+    -fx-text-fill: white;
+}
+
+
+#LBL_TB{
+    -fx-font-size: 15px;
+}
+
+.jfx-toggle-button{
+    -fx-font: bold 15px "Courier";
+    -fx-text-fill: white;
+    -jfx-toggle-color: royalblue;
+}

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="738.0" stylesheets="@Registro.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controller.RegistroController">
+   <children>
+      <ImageView fx:id="imv_fondo" fitHeight="674.0" fitWidth="744.0" layoutX="-2.0" layoutY="2.0" pickOnBounds="true" smooth="false" />
+      <HBox alignment="CENTER" layoutX="4.0" layoutY="509.0" prefHeight="70.0" prefWidth="732.0">
+         <children>
+            <JFXButton fx:id="btn_aceptar" onAction="#accionAceptar" prefHeight="43.0" prefWidth="250.0" text="ACEPTAR">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="btn_Cancelar" onAction="#accionCancelar" prefHeight="43.0" prefWidth="250.0" text="CANCELAR">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </JFXButton>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" layoutY="53.0" prefHeight="460.0" prefWidth="384.0">
+         <children>
+            <JFXTextField fx:id="tf_Nombre" alignment="CENTER" prefHeight="45.0" promptText="Nombre">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="tf_Apellido" alignment="CENTER" prefHeight="45.0" promptText="Apellidos">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="tf_Cedula" alignment="CENTER" prefHeight="45.0" promptText="Cedula ">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="tf_Correo" alignment="CENTER" prefHeight="45.0" promptText="Correo electronico">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+         </children>
+      </VBox>
+      <VBox fx:id="vb_der" alignment="CENTER" layoutX="400.0" layoutY="49.0" prefHeight="460.0" prefWidth="338.0">
+         <children>
+            <Label fx:id="lbl_tu" prefHeight="29.0" prefWidth="375.0" text="Tipo de usuario ">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <VBox>
+               <children>
+                  <VBox>
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="113.0" prefWidth="360.0">
+                           <children>
+                              <StackPane />
+                              <JFXRadioButton fx:id="rb_Administrador" prefHeight="33.0" prefWidth="318.0" text="Administrador">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="tg_tipUsuario" />
+                                 </toggleGroup>
+                              </JFXRadioButton>
+                              <JFXRadioButton fx:id="rb_Recepcionista" prefHeight="35.0" prefWidth="318.0" text="Recepcionista" toggleGroup="$tg_tipUsuario">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </JFXRadioButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                           </VBox.margin>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <JFXTextField fx:id="tf_Contrasenha" alignment="CENTER" prefHeight="45.0" promptText="Contraseña ">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXTextField fx:id="tf_UserName" alignment="CENTER" prefHeight="45.0" promptText="Nombre de Usuario">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+         </children>
+      </VBox>
+      <Label fx:id="lbl_Titulo" layoutX="7.0" prefHeight="65.0" prefWidth="725.0" text="ZONA DE REGISTRO" />
+      <Label fx:id="LBL_TB" layoutX="260.0" layoutY="616.0" prefHeight="42.0" prefWidth="116.0" text="ESPAÑOL" />
+      <JFXToggleButton fx:id="tg_idioma" layoutX="331.0" layoutY="608.0" onAction="#accionIdioma" prefHeight="42.0" prefWidth="163.0" text="ENGLISH" />
+   </children>
+</AnchorPane>

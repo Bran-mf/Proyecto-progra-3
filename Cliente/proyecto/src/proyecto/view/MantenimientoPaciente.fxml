@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyecto.controller.MantenimientoPacienteController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="55.0" prefWidth="701.0">
+               <children>
+                  <Label fx:id="lbl_main" alignment="CENTER" prefHeight="55.0" prefWidth="701.0" text="Mantenimiento de Pacientes" />
+               </children>
+            </HBox>
+            <HBox prefHeight="166.0" prefWidth="701.0">
+               <children>
+                  <TableView fx:id="tv_pacientes001" onMouseClicked="#cargar_paciente" prefHeight="180.0" prefWidth="701.0">
+                    <columns>
+                      <TableColumn fx:id="clm_nombre001" prefWidth="131.0" text="Nombre" />
+                      <TableColumn fx:id="clm_apellido001" prefWidth="208.0" text="Apellidos" />
+                        <TableColumn fx:id="clm_cedula001" prefWidth="75.0" text="Cedula" />
+                        <TableColumn fx:id="clm_correo001" prefWidth="131.0" text="Correo" />
+                        <TableColumn fx:id="clm_genero001" prefWidth="55.0" text="Genero" />
+                        <TableColumn fx:id="clm_nacimiento001" prefWidth="100.0" text="Nacimiento" />
+                    </columns>
+                  </TableView>
+               </children>
+            </HBox>
+            <HBox prefHeight="188.0" prefWidth="701.0">
+               <children>
+                  <VBox prefHeight="188.0" prefWidth="58.0">
+                     <children>
+                        <Label alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="177.0" text="Nombre" />
+                        <Label alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="177.0" text="Apellidos" />
+                        <Label alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="177.0" text="Cedula" />
+                        <Label alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="177.0" text="Correo" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="188.0" prefWidth="240.0">
+                     <children>
+                        <JFXTextField fx:id="tf_nombre001" prefHeight="38.0" prefWidth="184.0" />
+                        <JFXTextField fx:id="tf_apellido001" prefHeight="47.0" prefWidth="184.0" />
+                        <JFXTextField fx:id="tf_cedula001" prefHeight="45.0" prefWidth="184.0" />
+                        <JFXTextField fx:id="tf_correo001" prefHeight="54.0" prefWidth="184.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="188.0" prefWidth="148.0">
+                     <children>
+                        <Label alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="218.0" text="Genero" />
+                        <Label alignment="BOTTOM_CENTER" prefHeight="43.0" prefWidth="148.0" text="Fecha de nacimiento" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="188.0" prefWidth="253.0">
+                     <children>
+                        <JFXComboBox fx:id="cb_genero001" prefHeight="47.0" prefWidth="253.0" />
+                        <JFXDatePicker fx:id="dp_fechaNacimiento001" prefHeight="39.0" prefWidth="253.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="61.0" prefWidth="701.0">
+               <children>
+                  <JFXButton fx:id="btn_guardar001" onAction="#guardar_paciente" prefHeight="35.0" prefWidth="154.0" text="Agregar Paciente" />
+                  <JFXButton fx:id="btn_eliminar001" onAction="#eliminar_paciente" prefHeight="35.0" prefWidth="154.0" text="Eliminar Paciente" />
+                  <JFXButton fx:id="btn_buscar001" onAction="#buscar_paciente" prefHeight="35.0" prefWidth="154.0" text="Buscar" />
+                  <JFXButton fx:id="btn_limpiar001" onAction="#limpiar_paciente001" prefHeight="35.0" prefWidth="154.0" text="Limpiar" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
